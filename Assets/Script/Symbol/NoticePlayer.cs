@@ -24,6 +24,7 @@ public class NoticePlayer : MonoBehaviour
             {
                 isPressReady = true;
                 gameObject.SendMessage("PressReady");
+                HelpText.instance.SendMessage("PressReady");
                 //Player¿¡°Ô Dispatch
                 //hit.collider.gameObject.SendMessage("PressReady");
             }
@@ -34,6 +35,7 @@ public class NoticePlayer : MonoBehaviour
         {
             isPressReady = false;
             gameObject.SendMessage("PressFailed");
+            HelpText.instance.SendMessage("PressFailed");
         }
     }
 
