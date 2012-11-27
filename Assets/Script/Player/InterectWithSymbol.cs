@@ -5,21 +5,7 @@ public partial class InterectWithSymbol : MonoBehaviour
 {
     private bool isPressReady;
 }
-[RequireComponent(typeof(NoticeSymbolReceiver))]
-public partial class InterectWithSymbol : MonoBehaviour
-{
-    public void PressReady()
-    {
-        isPressReady = true;
-    }
-    public void PressFailed()
-    {
-    }
-    public void PressSuccess()
-    {
-    }
-}
-
+[RequireComponent(typeof(NoticeSymbolSender))]
 public partial class InterectWithSymbol : MonoBehaviour
 {
     // Use this for initialization
@@ -30,5 +16,21 @@ public partial class InterectWithSymbol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Left Mouse Click
+        if (Input.GetMouseButton(0))
+        {
+            if (GetComponent<NoticeSymbolSender>().isPressReady)
+            {
+                GetComponent<NoticeSymbolSender>().press();
+            }
+        }
+        //Right Mouse Click
+        else if (Input.GetMouseButton(1))
+        {
+        }
+        //Middle Mouse Click
+        else if (Input.GetMouseButton(2))
+        {
+        }
     }
 }

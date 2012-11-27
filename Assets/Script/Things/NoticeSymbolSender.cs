@@ -4,15 +4,28 @@ using UnityEngine;
 public partial class NoticeSymbolSender : MonoBehaviour
 {
     public float distance = 2.0f;
-    private bool isPressReady;
+    private bool _isPressReady;
+
+    public bool isPressReady
+    {
+        get { return _isPressReady; }
+    }
 }
 
 public partial class NoticeSymbolSender : MonoBehaviour
 {
-    private bool isColliderSymbol(RaycastHit hit)
+    private bool isColliderNormalSymbol(RaycastHit hit)
     {
         Symbol symbol = hit.collider.gameObject.GetComponent<Symbol>();
-        return symbol != null;
+        if (symbol != null)
+            return symbol.GetComponent<SymbolState>().state == eSymbolState.NORMAL;
+        return false;
+    }
+
+    public void press()
+    {
+        _isPressReady = false;
+        SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressSuccess");
     }
 }
 
@@ -20,7 +33,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
 {
     private void Start()
     {
-        isPressReady = false;
+        _isPressReady = false;
     }
 
     // Update is called once per frame
@@ -29,20 +42,19 @@ public partial class NoticeSymbolSender : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distance))
         {
-            Debug.Log("hit : " + hit.collider.gameObject.name);
             //플레이어가 다가오고, 누름 준비상태가 아닐 때
             //누름 준비상태로 만든다.
-            if (isColliderSymbol(hit) && !isPressReady)
+            if (isColliderNormalSymbol(hit) && !_isPressReady)
             {
-                isPressReady = true;
+                _isPressReady = true;
                 SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressReady");
             }
         }
         //플레이어가 떨어져 있고, 누름 준비상태일 때
         //누름 준비상태를 해제한다.
-        else if (isPressReady)
+        else if (_isPressReady)
         {
-            isPressReady = false;
+            _isPressReady = false;
             SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressFailed");
         }
     }
@@ -56,7 +68,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
         Color color = Color.red;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distance))
         {
-            if (isColliderSymbol(hit))
+            if (isColliderNormalSymbol(hit))
             {
                 color = Color.green;
             }
