@@ -17,6 +17,7 @@ public partial class HelpText : MonoBehaviour
     }
 }
 
+[RequireComponent(typeof(NoticeSymbolReceiver))]
 public partial class HelpText : MonoBehaviour
 {
     public void PressReady()

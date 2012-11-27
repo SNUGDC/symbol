@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NoticeSymbol : MonoBehaviour {
+public class Symbol : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

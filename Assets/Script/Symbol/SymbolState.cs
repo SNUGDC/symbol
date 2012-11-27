@@ -9,6 +9,7 @@ public enum eSymbolState
     NORMAL,
 }
 
+[RequireComponent(typeof(NoticeSymbolReceiver))]
 public partial class SymbolState : MonoBehaviour
 {
     public eSymbolState state = eSymbolState.NORMAL;
