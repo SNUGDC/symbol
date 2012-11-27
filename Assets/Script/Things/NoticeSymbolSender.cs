@@ -4,11 +4,11 @@ using UnityEngine;
 public partial class NoticeSymbolSender : MonoBehaviour
 {
     public float distance = 2.0f;
-    private bool _isPressReady;
+    private GameObject _readySymbol;
 
-    public bool isPressReady
+    public bool isReadySymbolEmpty
     {
-        get { return _isPressReady; }
+        get { return _readySymbol == null; }
     }
 }
 
@@ -24,7 +24,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
 
     public void press()
     {
-        _isPressReady = false;
+        _readySymbol = null;
         SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressSuccess");
     }
 }
@@ -33,7 +33,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
 {
     private void Start()
     {
-        _isPressReady = false;
+        _readySymbol = null;
     }
 
     // Update is called once per frame
@@ -44,18 +44,27 @@ public partial class NoticeSymbolSender : MonoBehaviour
         {
             //플레이어가 다가오고, 누름 준비상태가 아닐 때
             //누름 준비상태로 만든다.
-            if (isColliderNormalSymbol(hit) && !_isPressReady)
+            if (isReadySymbolEmpty)
             {
-                _isPressReady = true;
-                hit.collider.gameObject.AddComponent<NoticeSymbolReceiver>();
-                SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressReady");
+                if (isColliderNormalSymbol(hit))
+                {
+                    _readySymbol = hit.collider.gameObject;
+                    hit.collider.gameObject.AddComponent<NoticeSymbolReceiver>();
+                    SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressReady");
+                }
+            }
+            //누름 준비상태이면서 Raycast 객체가 변화하였을때 누름 준비상태를 해제한다.
+            else if (hit.collider.gameObject != _readySymbol)
+            {
+                _readySymbol = null;
+                SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressFailed");
             }
         }
         //플레이어가 떨어져 있고, 누름 준비상태일 때
         //누름 준비상태를 해제한다.
-        else if (_isPressReady)
+        else if (!isReadySymbolEmpty)
         {
-            _isPressReady = false;
+            _readySymbol = null;
             SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressFailed");
         }
     }
@@ -65,16 +74,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
 {
     private void OnDrawGizmos()
     {
-        RaycastHit hit;
-        Color color = Color.red;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distance))
-        {
-            if (isColliderNormalSymbol(hit))
-            {
-                color = Color.green;
-            }
-        }
-        Gizmos.color = color;
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + transform.TransformDirection(Vector3.forward) * distance);
     }
 }

@@ -19,7 +19,7 @@ public partial class InterectWithSymbol : MonoBehaviour
         //Left Mouse Click
         if (Input.GetMouseButton(0))
         {
-            if (GetComponent<NoticeSymbolSender>().isPressReady)
+            if (GetComponent<NoticeSymbolSender>().isReadySymbolEmpty)
             {
                 GetComponent<NoticeSymbolSender>().press();
             }

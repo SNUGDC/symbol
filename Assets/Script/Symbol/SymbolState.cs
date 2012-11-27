@@ -63,7 +63,7 @@ public partial class SymbolState : MonoBehaviour
             case eSymbolState.ACTIVE:
                 break;
         }
-        //예가 이곳에 있는게 옳은가?
+        //이놈이 이곳에 있는게 옳은가?
         Destroy(GetComponent<NoticeSymbolReceiver>());
     }
     private void PressSuccess()
