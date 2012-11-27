@@ -47,6 +47,7 @@ public partial class NoticeSymbolSender : MonoBehaviour
             if (isColliderNormalSymbol(hit) && !_isPressReady)
             {
                 _isPressReady = true;
+                hit.collider.gameObject.AddComponent<NoticeSymbolReceiver>();
                 SendReceiveUtil.SendMessageToReceivers<NoticeSymbolReceiver>("PressReady");
             }
         }

@@ -23,7 +23,7 @@ public partial class HelpText : MonoBehaviour
     public void PressReady()
     {
         this.guiText.enabled = true;
-        this.guiText.text = "Left Mouse Click!";
+        this.guiText.text = "Press Left Click!";
     }
     public void PressSuccess()
     {
