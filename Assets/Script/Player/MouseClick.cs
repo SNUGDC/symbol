@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Const : MonoBehaviour {
+public class NoticeSymbol : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

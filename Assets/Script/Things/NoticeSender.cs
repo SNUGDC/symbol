@@ -2,11 +2,23 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(SymbolState))]
-public class NoticePlayer : MonoBehaviour
+public partial class NoticeSender : MonoBehaviour
 {
     public float distance = 2.0f;
     private bool isPressReady;
+}
 
+public partial class NoticeSender : MonoBehaviour
+{
+    private bool isColliderPlayer(RaycastHit hit)
+    {
+        Player player = hit.collider.gameObject.GetComponent<Player>();
+        return player != null;
+    }
+}
+
+public partial class NoticeSender : MonoBehaviour
+{
     private void Start()
     {
         isPressReady = false;
@@ -23,10 +35,7 @@ public class NoticePlayer : MonoBehaviour
             if (isColliderPlayer(hit) && !isPressReady)
             {
                 isPressReady = true;
-                gameObject.SendMessage("PressReady");
-                HelpText.instance.SendMessage("PressReady");
-                //Player에게 Dispatch
-                //hit.collider.gameObject.SendMessage("PressReady");
+                SendReceiveUtil.SendMessageToReceivers<NoticeReceiver>("PressReady");
             }
         }
         //플레이어가 떨어져 있고, 누름 준비상태일 때
@@ -34,14 +43,7 @@ public class NoticePlayer : MonoBehaviour
         else if (isPressReady)
         {
             isPressReady = false;
-            gameObject.SendMessage("PressFailed");
-            HelpText.instance.SendMessage("PressFailed");
+            SendReceiveUtil.SendMessageToReceivers<NoticeReceiver>("PressFailed");
         }
-    }
-
-    private bool isColliderPlayer(RaycastHit hit)
-    {
-        Player player = hit.collider.gameObject.GetComponent<Player>();
-        return player != null;
     }
 }
