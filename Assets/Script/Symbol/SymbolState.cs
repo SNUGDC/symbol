@@ -13,6 +13,7 @@ public enum eSymbolState
 public partial class SymbolState : MonoBehaviour
 {
     public eSymbolState state = eSymbolState.NORMAL;
+    public float normailzeTime = 2.0f;
     //state의 변화를 감지한다.
     private eSymbolState prev_state;
 }
@@ -66,12 +67,19 @@ public partial class SymbolState : MonoBehaviour
         //이놈이 이곳에 있는게 옳은가?
         Destroy(GetComponent<NoticeSymbolReceiver>());
     }
+    private IEnumerator normalizeState(float time)
+    {
+        yield return new WaitForSeconds(time);
+        state = eSymbolState.NORMAL;
+    }
     private void PressSuccess()
     {
         switch (state)
         {
             case eSymbolState.HOVER:
                 state = eSymbolState.ACTIVE;
+                Debug.Log("coroutine start");
+                StartCoroutine(normalizeState(normailzeTime));
                 break;
             case eSymbolState.NORMAL:
             case eSymbolState.DISABLE:
