@@ -1,0 +1,20 @@
+<itemtypes>
+<itemtype id="0">
+<name lang="0"><![CDATA[Equip]]></name>
+<description lang="0"><![CDATA[Equipment type]]></description>
+<name lang="1"><![CDATA[장비]]></name>
+<description lang="1"><![CDATA[장비 타입]]></description>
+</itemtype>
+<itemtype id="1">
+<name lang="0"><![CDATA[Consumable]]></name>
+<description lang="0"><![CDATA[Consumable Type]]></description>
+<name lang="1"><![CDATA[소비]]></name>
+<description lang="1"><![CDATA[소비 타입]]></description>
+</itemtype>
+<itemtype id="2">
+<name lang="0"><![CDATA[Quest]]></name>
+<description lang="0"><![CDATA[Quest Item]]></description>
+<name lang="1"><![CDATA[퀘스트]]></name>
+<description lang="1"><![CDATA[퀘스트 타입]]></description>
+</itemtype>
+</itemtypes>

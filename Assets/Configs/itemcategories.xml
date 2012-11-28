@@ -1,0 +1,14 @@
+<itemcategories>
+<itemcategory id="0" categorynumber="1" type="0">
+<name lang="0"><![CDATA[Head]]></name>
+<description lang="0"><![CDATA[Head Parts]]></description>
+<name lang="1"><![CDATA[투구]]></name>
+<description lang="1"><![CDATA[투구 파츠]]></description>
+</itemcategory>
+<itemcategory id="1" categorynumber="2" type="0">
+<name lang="0"><![CDATA[Body]]></name>
+<description lang="0"><![CDATA[Body Parts]]></description>
+<name lang="1"><![CDATA[갑옷]]></name>
+<description lang="1"><![CDATA[갑옷 파츠]]></description>
+</itemcategory>
+</itemcategories>

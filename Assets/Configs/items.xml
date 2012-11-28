@@ -1,0 +1,14 @@
+<items>
+<item iconmark="0" prefabname="" sellable="0" name="Head" period="0" removable="0" bill="0" buyprice="0" canmerge="0" own="0" id="1" itemtype="0" sellprice="50" cantrade="0" maxmerge="0" consume="0" category="0" shopreg="0">
+<name lang="0"><![CDATA[Head]]></name>
+<description lang="0"><![CDATA[Head]]></description>
+<name lang="1"><![CDATA[New Item]]></name>
+<description lang="1"><![CDATA[New Description]]></description>
+</item>
+<item iconmark="0" prefabname="" sellable="0" name="Body" period="0" removable="0" bill="0" buyprice="0" canmerge="0" own="0" id="2" itemtype="0" sellprice="50" cantrade="0" maxmerge="0" consume="0" category="0" shopreg="0">
+<name lang="0"><![CDATA[Body]]></name>
+<description lang="0"><![CDATA[Body]]></description>
+<name lang="1"><![CDATA[New Item]]></name>
+<description lang="1"><![CDATA[New Description]]></description>
+</item>
+</items>
