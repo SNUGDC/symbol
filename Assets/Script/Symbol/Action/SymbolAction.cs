@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class SymbolAction : MonoBehaviour
 {
-    public float duration = -1.0f;
+    public float duration = 10.0f;
     public abstract void Action();
 
     public void PressSuccess()
