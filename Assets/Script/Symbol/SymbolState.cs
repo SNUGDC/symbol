@@ -78,7 +78,6 @@ public partial class SymbolState : MonoBehaviour
         {
             case eSymbolState.HOVER:
                 state = eSymbolState.ACTIVE;
-                Debug.Log("coroutine start");
                 StartCoroutine(normalizeState(normailzeTime));
                 break;
             case eSymbolState.NORMAL:
@@ -86,6 +85,8 @@ public partial class SymbolState : MonoBehaviour
             case eSymbolState.ACTIVE:
                 break;
         }
+        //이놈이 이곳에 있는게 옳은가?
+        Destroy(GetComponent<NoticeSymbolReceiver>());
     }
 }
 public partial class SymbolState : MonoBehaviour
