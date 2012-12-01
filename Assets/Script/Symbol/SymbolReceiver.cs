@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class NoticeSymbolReceiver : NoticeReceiver
+public class SymbolReceiver : NoticeReceiver
 {
     public static string PressReady = "PressReady";
     public static string PressFailed = "PressFailed";

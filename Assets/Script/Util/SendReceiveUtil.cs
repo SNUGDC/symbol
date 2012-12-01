@@ -14,6 +14,7 @@ public class SendReceiveUtil
     }
     public static void SendMessageToReceivers(System.Type type, string eventName, object eventData = null)
     {
+        Debug.Log(eventName);
         Object[] receivers = GameObject.FindObjectsOfType(type);
 
         foreach (NoticeReceiver receiver in receivers)
