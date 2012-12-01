@@ -5,7 +5,7 @@ public class BlockSoarAndSinkAction : BlockSoarAction
 {
     public override void Action()
     {
-        GameObject instance = (GameObject)Instantiate(prefab, from, Quaternion.identity);
+        GameObject instance = (GameObject)Instantiate(prefab, position, Quaternion.identity);
         switch (direction)
         {
             case eDirection.x:
@@ -40,16 +40,16 @@ public class BlockSoarAndSinkAction : BlockSoarAction
     protected void SinkX(GameObject instance, float second)
     {
         iTween.ScaleTo(instance, new Vector3(0, 1, 1), second);
-        iTween.MoveTo(instance, from - Vector3.right * length / 2.0f, second);
+        iTween.MoveTo(instance, position - Vector3.right * length / 2.0f, second);
     }
     protected void SinkY(GameObject instance, float second)
     {
         iTween.ScaleTo(instance, new Vector3(1, 0, 1), second);
-        iTween.MoveTo(instance, from - Vector3.up * length / 2.0f, second);
+        iTween.MoveTo(instance, position - Vector3.up * length / 2.0f, second);
     }
     protected void SinkZ(GameObject instance, float second)
     {
         iTween.ScaleTo(instance, new Vector3(1, 1, 0), second);
-        iTween.MoveTo(instance, from - Vector3.forward * length / 2.0f, second);
+        iTween.MoveTo(instance, position - Vector3.forward * length / 2.0f, second);
     }
 }
