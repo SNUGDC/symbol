@@ -1,15 +1,25 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
-public class Symbol : MonoBehaviour {
+public class Symbol : PerceptibleObject
+{
+    // Use this for initialization
+    private void Start()
+    {
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    private void Update()
+    {
+    }
+
+    public override bool isTouchable()
+    {
+        return GetComponent<SymbolState>().state == eSymbolState.NORMAL;
+    }
+
+    public override System.Type getReceiverType()
+    {
+        return typeof(NoticeSymbolReceiver);
+    }
 }

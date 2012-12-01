@@ -12,4 +12,13 @@ public class SendReceiveUtil
             receiver.gameObject.SendMessage(eventName, eventData);
         }
     }
+    public static void SendMessageToReceivers(System.Type type, string eventName, object eventData = null)
+    {
+        Object[] receivers = GameObject.FindObjectsOfType(type);
+
+        foreach (NoticeReceiver receiver in receivers)
+        {
+            receiver.gameObject.SendMessage(eventName, eventData);
+        }
+    }
 }
